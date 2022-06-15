@@ -1,8 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:provider/single_child_widget.dart';
 
 import 'page/story_list_page.dart';
+import 'providers/listview_notifier.dart';
 
-void main() => runApp(MyApp());
+List<SingleChildWidget> providers = [
+  ChangeNotifierProvider<ListViewNotifier>(create: (_) => ListViewNotifier()),
+];
+
+void main() => runApp(
+      MultiProvider(
+        providers: providers,
+        child: MyApp(),
+      ),
+    );
 
 class MyApp extends StatelessWidget {
   @override
